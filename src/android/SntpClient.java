@@ -62,9 +62,10 @@ public class SntpClient {
      *
      * @param host host name of the server.
      * @param timeout network timeout in milliseconds.
-     * @return true if the transaction was successful.
+     * @return String error message or "success".
      */
-    public boolean requestTime(String host, int timeout) {
+    public String requestTime(String host, int timeout) {
+        // converted to string instead of boolean for proper error message
         DatagramSocket socket = null;
         try {
             socket = new DatagramSocket();
@@ -109,13 +110,13 @@ public class SntpClient {
             mRoundTripTime = roundTripTime;
         } catch (Exception e) {
             Log.d(TAG, "Request time failed: " + e);
-            return false;
+            return e.getMessage();
         } finally {
             if (socket != null) {
                 socket.close();
             }
         }
-        return true;
+        return "success";
     }
     /**
      * Returns the time computed from the NTP transaction.

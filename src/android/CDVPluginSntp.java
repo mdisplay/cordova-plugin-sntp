@@ -50,10 +50,11 @@ public class CDVPluginSntp extends CordovaPlugin {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                if (!client.requestTime(server, timeout)) {
-                    callbackContext.error("Error contacting SNTP Server.");
+                String message = client.requestTime(server, timeout);
+                if(message != "success") {
+                    // modified for proper error message
+                    callbackContext.error(message);
                 }
-
                 runnable.run();
             }
         }).start();
