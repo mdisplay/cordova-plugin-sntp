@@ -7,7 +7,7 @@ Currently it is implemented for Android and has a dummy implementation for iOS. 
 ### Installation
 
 ```bash
-$ cordova plugin add https://github.com/hub9co/cordova-plugin-sntp
+$ cordova plugin add https://github.com/mdisplay/cordova-plugin-sntp
 ```
 
 ### Usage
